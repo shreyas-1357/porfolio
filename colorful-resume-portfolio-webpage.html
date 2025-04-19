@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shreyas Sonawane | Software Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3a3af1;
+            --secondary-color: #4db5ff;
+            --text-color: #333;
+            --light-bg: #f0f8ff;
+            --accent-color: #ff5e5e;
+            --secondary-accent: #38b000;
+            --border-radius: 8px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --gradient-bg: linear-gradient(135deg, #3a3af1 0%, #5e60ce 50%, #4db5ff 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            background-image: radial-gradient(#e0f7fa 1px, transparent 1px);
+            background-size: 20px 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: var(--gradient-bg);
+            color: white;
+            padding: 60px 0 30px;
+            position: relative;
+            border-bottom: 5px solid var(--accent-color);
+        }
+        
+        .profile-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        /* ===== PROFILE PHOTO SECTION =====
+           Replace the <i class="fas fa-user"></i> with your actual image
+           Example: <img src="shreyas.JPG" alt="Shreyas Sonawane">
+           Make sure to add your photo to the project folder! */
+          /* PROFILE PHOTO SECTION - Adjusted for 744x558 pixel image */
+          .profile-photo {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 5px solid white;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin-right: 40px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        
+        .profile-photo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* This is for the placeholder icon if no image is added */
+        .profile-photo i {
+            font-size: 80px;
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        /* For the actual image - helps handle the aspect ratio */
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* This ensures the image covers the area without distortion */
+            object-position: center; /* Centers the image */
+        }
+        
+        .profile-info {
+            flex: 1;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tagline {
+            font-size: 1.4rem;
+            color: white;
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .contact-item {
+            margin-right: 25px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .contact-item:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        .contact-item i {
+            margin-right: 12px;
+            color: white;
+        }
+        
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+        
+        .contact-item a:hover {
+            color: var(--accent-color);
+        }
+        
+        nav {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li a {
+            display: block;
+            padding: 20px 25px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: background-color 0.3s, color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background-color: var(--accent-color);
+            transition: width 0.3s, left 0.3s;
+        }
+        
+        .nav-links li a:hover::after,
+        .nav-links li a.active::after {
+            width: 100%;
+            left: 0;
+        }
+        
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            color: var(--accent-color);
+        }
+        
+        section {
+            padding: 70px 0;
+        }
+        
+        section:nth-child(odd) {
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            display: inline-block;
+            padding-bottom: 15px;
+            position: relative;
+            color: var(--primary-color);
+        }
+        
+        .section-title h2::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transform: translateX(-50%);
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            transform: translateX(-50%);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-text {
+            padding: 25px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border-left: 5px solid var(--secondary-color);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .about-text p:not(:last-child) {
+            margin-bottom: 15px;
+        }
+        
+        .experience-items,
+        .project-items,
+        .education-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 25px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            border-top: 4px solid var(--primary-color);
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            transform: translateX(-100%);
+            transition: transform 0.5s;
+        }
+        
+        .card:hover::before {
+            transform: translateX(0);
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-title {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .card-subtitle {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .card-date {
+            font-size: 0.9rem;
+            color: #777;
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+        
+        .card-content ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+        
+        .card-content ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .card-content ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .skill-category {
+            flex: 1;
+            min-width: 250px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-category::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 1.3rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .skill-category h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+        
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .skill-item {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .research-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 35px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--secondary-accent);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .research-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(77, 181, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 50%;
+        }
+        
+        .research-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .research-card p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        
+        footer {
+            background: var(--gradient-bg);
+            color: white;
+            padding: 40px 0 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color), var(--accent-color));
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin: 25px 0;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 0 15px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-color);
+            transform: scale(0);
+            transition: transform 0.3s ease;
+            border-radius: 50%;
+            z-index: -1;
+        }
+        
+        .social-links a:hover::before {
+            transform: scale(1);
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .profile-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-photo {
+                margin-right: 0;
+                margin-bottom: 30px;
+            }
+            
+            .contact-info {
+                justify-content: center;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links li a {
+                padding: 15px;
+            }
+            
+            .card-title, .card-subtitle {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .card-date {
+                margin-top: 8px;
+            }
+            
+            h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        section {
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .section-title h2 {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container profile-container">
+            <div class="profile-photo">
+                <!-- PROFILE PHOTO: Replace this icon with your actual photo -->
+                <!-- Exa <img src="your-photo.jpg" alt="Shreyas Sonawane"> -->
+                <img src="shreyas.JPG" alt="Shreyas Sonawane">
+            </div>
+            <div class="profile-info">
+                <h1>Shreyas Sonawane</h1>
+                <p class="tagline">Software Developer | Backend Specialist | Cloud Enthusiast</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91-9022749704</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:shreyassonawane135@gmail.com">shreyassonawane135@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <a href="https://www.linkedin.com/in/linked.in" target="_blank">LinkedIn</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-gitlab"></i>
+                        <a href="https://gitlab.com/yourusername" target="_blank">GitLab</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container nav-container">
+            <ul class="nav-links">
+                <li><a href="#about" class="active">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#research">Research</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Tech-enthusiast with a solid foundation in backend software development and scalable microservices. Proficient in developing RESTful APIs, optimizing system architectures, and leveraging cloud technologies and containerization.</p>
+                    <p>Committed to contributing to impactful projects in a dynamic and fast-paced software engineering environment. I combine technical expertise with creative problem-solving to deliver efficient and innovative solutions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>Work Experience</h2>
+            </div>
+            <div class="experience-items">
+                <div class="card">
+                    <div class="card-title">
+                        <span>Software Trainee</span>
+                    </div>
+                    <div class="card-subtitle">
+                        <span>Cipheren Technology</span>
+                        <span class="card-date">Current</span>
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            <li>Implemented an Automatic Certificate Generator for students who participated in courses and events.</li>
+                            <li>Developed a backend system using Python, Streamlit, and Git to automate certificate generation.</li>
+                            <li>Integrated PDF generation and email automation for seamless certificate distribution.</li>
+                            <li>Deployed the system on Streamlit, ensuring easy accessibility and real-time generation.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">
+                        <span>Java Programming Intern</span>
+                    </div>
+                    <div class="card-subtitle">
+                        <span>Motion Cut</span>
+                        <span class="card-date">Dec 2023 – Jan 2024</span>
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            <li>Developed RESTful APIs using Spring Boot and JPA, enhancing CRUD efficiency.</li>
+                            <li>Improved backend reliability through error handling and logging mechanisms.</li>
+                            <li>Conducted API testing for seamless frontend integration.</li>
+                            <li>Built scalable microservices with Spring Boot and Spring Cloud.</li>
+                            <li>Deployed load balancing to improve application availability.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>Skills</h2>
+            </div>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">Java</div>
+                        <div class="skill-item">Python</div>
+                        <div class="skill-item">C</div>
+                        <div class="skill-item">MySQL</div>
+                        <div class="skill-item">HTML/CSS</div>
+                        <div class="skill-item">JavaScript</div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Frameworks & Libraries</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">Spring</div>
+                        <div class="skill-item">Spring Boot</div>
+                        <div class="skill-item">Spring Cloud</div>
+                        <div class="skill-item">Spring JPA</div>
+                        <div class="skill-item">Hibernate</div>
+                        <div class="skill-item">React</div>
+                        <div class="skill-item">NumPy</div>
+                        <div class="skill-item">Pandas</div>
+                        <div class="skill-item">Streamlit</div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Tools & Technologies</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">Docker</div>
+                        <div class="skill-item">Git</div>
+                        <div class="skill-item">GitHub</div>
+                        <div class="skill-item">GitLab</div>
+                        <div class="skill-item">CI/CD</div>
+                        <div class="skill-item">GitHub Actions</div>
+                        <div class="skill-item">GitLab CI/CD</div>
+                        <div class="skill-item">RESTful APIs</div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Databases</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">MySQL</div>
+                        <div class="skill-item">MongoDB</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Projects</h2>
+            </div>
+            <div class="project-items">
+                <div class="card">
+                    <div class="card-title">
+                        <span>Automatic Certificate Generator for EdTech Platform</span>
+                    </div>
+                    <div class="card-subtitle">
+                        <span>Python, Streamlit, Git, PDF Generation</span>
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            <li>Developed a web-based system using Streamlit to automatically generate and distribute certificates.</li>
+                            <li>Utilized Python scripting to dynamically create and format certificates based on participant data.</li>
+                            <li>Integrated email automation to send certificates directly to students after completion of courses.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">
+                        <span>Video Streaming Platform System</span>
+                    </div>
+                    <div class="card-subtitle">
+                        <span>Java, Spring JPA, Spring Security, React</span>
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            <li>Developed a responsive platform for video streaming and uploads.</li>
+                            <li>Implemented efficient video storage and retrieval mechanisms.</li>
+                            <li>Designed user-friendly interfaces for managing video content.</li>
+                            <li>Optimized backend API performance for seamless streaming.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">
+                        <span>Morse Code-Based Survival Beacon Using LoRa Module</span>
+                    </div>
+                    <div class="card-subtitle">
+                        <span>Embedded C, IoT, LoRa, ESP32 | Final year project</span>
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            <li>Designed a survival beacon system for emergency communication using Morse code.</li>
+                            <li>Utilized ESP32 microcontroller for signal processing and transmission.</li>
+                            <li>Integrated LoRa module for long-range, low-power communication.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="education">
+        <div class="container">
+            <div class="section-title">
+                <h2>Education</h2>
+            </div>
+            <div class="education-items">
+                <div class="card">
+                    <div class="card-title">
+                        <span>B.E. Electronics & Computer Engineering</span>
+                    </div>
+                    <div class="card-subtitle">
+                        <span>Amrutvahini College of Engineering, Sangamner</span>
+                        <span class="card-date">Pursuing</span>
+                    </div>
+                    <div class="card-content">
+                        <p>CGPA: 9.07</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">
+                        <span>Higher Secondary (HSC)</span>
+                    </div>
+                    <div class="card-subtitle">
+                        <span>Shree Ganesh Junior College, Korhale</span>
+                        <span class="card-date">May 2021</span>
+                    </div>
+                    <div class="card-content">
+                        <p>Percentage: 87%</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">
+                        <span>Secondary (SSC)</span>
+                    </div>
+                    <div class="card-subtitle">
+                        <span>ST. John English Medium School, Rahata</span>
+                        <span class="card-date">May 2019</span>
+                    </div>
+                    <div class="card-content">
+                        <p>Percentage: 79%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="research">
+        <div class="container">
+            <div class="section-title">
+                <h2>Research Work</h2>
+            </div>
+            <div class="research-card">
+                <h3>Morse Code-Based Survival Beacon</h3>
+                <p>Developed a Morse Code-Based Survival Beacon using LoRa Module, focusing on reliable emergency communication.</p>
+                <p>Enhanced signal transmission efficiency with low-power, long-range protocols, ensuring robust performance in critical scenarios.</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 Shreyas Sonawane. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://gitlab.com/yourusername" target="_blank"><i class="fab fa-gitlab"></i></a>
+                <a href="https://www.linkedin.com/in/linked.in" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:shreyassonawane135@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                document.querySelectorAll('nav a').forEach(navLink => {
+                    navLink.classList.
